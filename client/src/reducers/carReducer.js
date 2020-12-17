@@ -1,4 +1,4 @@
-import {GET_CARS,CARS_LOADING} from '../actions/types'
+import {GET_CARS/*,GET_CAR*/,CARS_LOADING} from '../actions/types'
 
 const initialState = {
     cars:[],
@@ -13,6 +13,12 @@ export default function(state=initialState,action){
                 cars:action.payload,
                 loading:false
             }
+        /*case GET_CAR:
+            return{
+                ...state,
+                cars: state.cars.filter(car=>car._id===action.payload),
+                loading:false
+            }*/
         case CARS_LOADING:
             return {
                 ...state,

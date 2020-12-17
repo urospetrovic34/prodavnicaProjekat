@@ -7,6 +7,11 @@ router.get('/',(req,res)=>{
     Car.find().then(cars => res.json(cars))
 })
 
+//PRILICNO BESKORISNA FUNKCIONALNOST
+/*router.get('/:id',(req,res)=>{
+    Car.findById(req.params.id).then(car => res.json(car))
+})*/
+
 router.post('/',(req,res)=>{
     const newCar = new Car({
         marka:req.body.marka,

@@ -1,15 +1,16 @@
-import './cars.css'
 import React, { Component } from 'react'
 import {Container,Card,CardImg,CardBody,CardTitle} from 'reactstrap'
 import {getCars} from '../actions/carActions'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {Link,BrowserRouter as Router} from 'react-router-dom'
+import {Link,BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import SingleCarPage from './SingleCarPage'
 
 export class CarsView extends Component {
 
     componentDidMount() {
         this.props.getCars()
+        console.log(this.props)
     }
 
     static propTypes = {
@@ -20,20 +21,18 @@ export class CarsView extends Component {
     render() {
         const {cars} = this.props.car
         return (
-            <Router>
-            <Container className="container">
-                {cars.map(({marka,model,karoserija,slika})=>(
-                    <Card className="mt-3">
+            <Container className="containerflex">
+                {cars.map(({_id,marka,model,karoserija,slika})=>(
+                    <Card className="m-3">
                         <CardBody>
-                            <Link to="#"><img top width="100%" src={slika} alt="Slika" /></Link>
-                            <CardTitle tag="h1"><Link to="#">{marka}</Link></CardTitle>
+                            <Link to={`${_id}`}><img top width="100%" src={slika} alt="Slika" /></Link>
+                            <CardTitle tag="h1"><Link to={`${_id}`}>{marka}</Link></CardTitle>
                             <CardTitle tag="p">{model}</CardTitle>
                             <CardTitle tag="p">{karoserija}</CardTitle>
                         </CardBody>
                     </Card>
                 ))}
             </Container>
-            </Router> 
         )
     }
 }
